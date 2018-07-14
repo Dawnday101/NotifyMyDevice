@@ -1,5 +1,32 @@
-#! /usr/bin/env python
-import sys,os,subprocess
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import requests
+import json
+import sys
+import os
+import subprocess
+
+api_key = 'user_api_key'
+limit = 5
+pinghost = "google.com"
+notification_title = 'Some title to send'
+notification_message = 'Some message to send'
+baseurl = "https://www.notifymydevice.com/push"
+verifurl = "https://www.notifymydevice.com/push/verify"
+notifurl= "https://www.notifymydevice.com/push/verify"
+data = {"ApiKey": api_key, "PushTitle": notification_title,"PushText": notification_message}
+headers = {'Content-Type': 'application/json'}
+r = requests.post(url, data=json.dumps(data), headers=headers)
+if r.status_code == 200:
+print 'Notification sent!'
+else:
+print 'Error while sending notificaton!'
+
+
+
+
+
 class Bash2Py(object):
   __slots__ = ["val"]
   def __init__(self, value=''):
@@ -46,7 +73,7 @@ class Expand(object):
 ## API Documentation:	https://www.notifymyandroid.com/api.jsp      #
 #########################################################################################
 #####start user configurable settings####
-APIkey=Bash2Py("eb11126e1ee9e24be2c65e9363d9300f2a620220d96792cf")
+APIkey=Bash2Py("your_api_key")
 ## API Key must me set here, go to http://www.notifymyandroid.com/ to get one
 limit=Bash2Py(5)
 # how many times to attempt to run curl, can help on unstable networks.
