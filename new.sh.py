@@ -12,16 +12,22 @@ limit = 5
 pinghost = "google.com"
 notification_title = 'Some title to send'
 notification_message = 'Some message to send'
+
+command=Bash2Py(__file__)
+application=Bash2Py(sys.argv[1])
+event=Bash2Py(sys.argv[2])
+description=Bash2Py(sys.argv[3])
+priority=Bash2Py(sys.argv[4])
 baseurl = "https://www.notifymydevice.com/push"
 verifurl = "https://www.notifymydevice.com/push/verify"
 notifurl= "https://www.notifymydevice.com/push/verify"
 data = {"ApiKey": api_key, "PushTitle": notification_title,"PushText": notification_message}
 headers = {'Content-Type': 'application/json'}
-r = requests.post(url, data=json.dumps(data), headers=headers)
+r = requests.post(baseurl, data=json.dumps(data), headers=headers)
 if r.status_code == 200:
-print 'Notification sent!'
+  print 'Notification sent!'
 else:
-print 'Error while sending notificaton!'
+  print 'Error while sending notificaton!'
 
 
 
